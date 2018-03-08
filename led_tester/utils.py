@@ -69,23 +69,7 @@ class LightTester:
     def __init__(self,N):
         self.size=N
         self.lights = [ [False]*N for i in range(N) ]
-           
-    
-    def turnon (self, a, b, c, d):
-       pass
-
-    def turnoff(self, a, b, c, d):
-        pass          
-                    
-    def switch(self, a, b, c, d):
-        pass
-    
-    def count(self):
-        pass
-    
-    def apply(self,instructions):
-       pass      
-           
+                     
         
     def printlights(self):
         pprint.pprint(self.lights)
