@@ -8,34 +8,56 @@ sys.path.append('.')
 
 import pytest
 from click.testing import CliRunner
-from led_tester import led_tester
-from led_tester import cli
-from led_tester import utils
+
+from led_tester.utils import *
 
 
 def test_command_line_interface():
     """Test the CLI."""
     ifile = "./data/input_assign3.txt"
-    N, instructions = utils.parseFile(ifile)
+    N, instructions = myparser(ifile)
     assert N is not None
 
 
 def test_read_file():
     ifile = "./data/test_data.txt"
-    N, instructions = utils.parseFile(ifile)
+    info= myparser(ifile)
+    N=info[0]
+    instructions=info[1]
     assert N == 10
-    assert instructions == ['turn on 0,0 through 9,9\n', 'turn off 0,0 through 9,9\n', 'switch 0,0 through 9,9\n', 'turn off 0,0 through 9,9\n', 'turn on 2,2 through 7,7\n']
+    assert instructions[0] == ['turn on', '0', '0', '9','9']
+    assert instructions[1] == ['turn off', '0', '0', '9','9']
+    assert instructions[4] == ['turn on', '2', '2', '7','7']
     
     
+def test_instructions_details():
+    ifile = "./data/test_data.txt"
+    info= myparser(ifile)
+    N=info[0]
+    instructions=info[1]
+    # check cmd and num1 from first line of instructions has been read right
+    cmd=instructions[0][0]
+    num1=instructions[0][1]
+    assert cmd=='turn on'
+    assert num1=='0'
+ 
     
-# def test_parsing():
-#     ledTesterTest=led_tester(10)
-#     ledTesterTest.apply('turn on 0,0 through 9,9')
-#     assert ledTesterTest.count==100
-#     # if command is 'turn on 0,0 through 9,9
-#     assert cmd == "turn on"
-#     assert x1, x2, y1, y2 == 0,0,9,9
+def test_instantiation():
+    # this tests object has been created and 
+    #prints it out to see if correct no of rows/columns are there
+    lighttest=LightTester(3)
+    lighttest.printlights()
+    assert lighttest!=None
     
+def test_typos_converted_to_empty_strings():
+    ifile = "./data/typos_galore.txt"
+    info= myparser(ifile)
+    N=info[0]
+    instructions=info[1]
+    print(info)
+    assert N==5
+    assert instructions[0][0]==''
+    assert instructions[2][0]==''
     
     
     

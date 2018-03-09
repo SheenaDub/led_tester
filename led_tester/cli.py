@@ -3,6 +3,7 @@
 """Console script for led_tester."""
 import sys
 import click
+from utils import *
 click.disable_unicode_literals_warning=True
 
 @click.command()
@@ -10,17 +11,16 @@ click.disable_unicode_literals_warning=True
 def main(input=None):
     """Console script for led_tester."""
     print("input: ", input)
+    print()
+    info = myparser(input)
+    N=info[0]
+    instructions=info[1]
+    print('N is :', N)
     
-    N, instructions = parseFile(input)
-    
-    ledTester = ledTester(N)
-    
-    for instruction in instructions:
-        ledTester.apply(instruction)
-    print(ledTester.countOccupied())
-    
-    return 0
+    print(instructions)  
 
 
-if __name__ == "__main__":
-    sys.exit(main()) # pragma: no cover 
+main()
+
+# if __name__ == "__main__":
+#     sys.exit(main()) # pragma: no cover 

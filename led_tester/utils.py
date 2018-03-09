@@ -51,7 +51,6 @@ def myparser(file):# eventually you will be passing a filename to this method as
                 num3=x4[0]
                 num4=x4[1]
             else:
-                print('this should not print - unless there is a typo')
                 cmd=''
                 num1=0
                 num2=0
@@ -85,4 +84,3 @@ def main():
     print()  
     lights.printlights()
     
-main()
