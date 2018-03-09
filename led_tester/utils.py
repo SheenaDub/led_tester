@@ -72,15 +72,64 @@ class LightTester:
         
     def printlights(self):
         pprint.pprint(self.lights)
+        
+    def turnon (self, a, b, c, d):
+        self.x = int(a)
+        self.y = int(b)
+        self.z=int(c)
+        self.q=int(d)
+        for i in range (self.x, self.z+1):
+            for j in range (self.y, self.q+1):
+                self.lights[i][j]=True
+    
+
+    def turnoff(self, a, b, c, d):
+        self.x = int(a)
+        self.y = int(b)
+        self.z=int(c)
+        self.q=int(d)
+        for i in range (self.x, self.z+1):
+            for j in range (self.y, self.q+1):
+                self.lights[i][j]=False
+                    
+                    
+    def switch(self, a, b, c, d):
+        self.x = int(a)
+        self.y = int(b)
+        self.z=int(c)
+        self.q=int(d)
+        for i in range (self.x, self.z+1):
+            for j in range (self.y, self.q+1):
+                if self.lights[i][j]==True:
+                    self.lights[i][j]=False
+                else:
+                    self.lights[i][j]=True
+    
+    def count(self):
+        count=0
+        for i in range(self.size):
+            for j in range(self.size):
+                if self.lights[i][j]==True:
+                    count=count+1
+        return count
+    
+    def apply(self,instructions):
+        for i in instructions:
+            cmd=(i[0])
+            num1=(i[1])
+            num2=(i[2])
+            num3=(i[3])
+            num4=(i[4])
+            if cmd=='turn on':
+                self.turnon(num1,num2,num3,num4)
+            elif cmd=='turn off':
+                self.turnoff(num1,num2,num3,num4)
+            elif cmd=='switch':
+                    self.switch(num1,num2,num3,num4) 
+            else:
+                continue
+    
            
                      
-def main():
-    file = "smalltest.txt"
-    info = myparser(file)
-    N=info[0]
-    instructions=info[1]
-    print(N)
-    lights=LightTester(N)
-    print()  
-    lights.printlights()
+
     
