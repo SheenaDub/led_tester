@@ -3,17 +3,20 @@
 import pprint
 import urllib.request
 import requests
+import io
 
 def parseFile(input):
     if input.startswith('http'):
 #         uri=input
-#         r = requests.get(uri).text
-#         alllines= ''.join(r.split('\n'))
-#         print(alllines)
-#         buffer = r.read().decode('utf-8')
-#         return myparser(buffer)
-        print('This does not read http files')
-        exit()
+#         req = urllib.request.urlopen(uri)
+#         buffer = req.read().decode('utf-8')
+#         newfile=open('newfile.txt', 'w+')
+#         for line in buffer.split('\n'):
+#             newfile.write(line + '\n')
+#         return myparser(newfile)
+
+         print('This does not read http files')
+         exit()
     else:
         return myparser(input)
     
