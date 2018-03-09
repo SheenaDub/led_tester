@@ -12,12 +12,12 @@ def main(input=None):
     """Console script for led_tester."""
     print("input: ", input)
     print()
-    info = myparser(input)
+    info = parseFile(input)
     N=info[0]
     instructions=info[1]
-    print('N is :', N)
-    
-    print(instructions)  
+    lighttest=LightTester(N)
+    lighttest.apply(instructions)
+    print('NO OF LIGHTS NOW ON IS: ', lighttest.count())
 
 
 main()

@@ -1,6 +1,36 @@
 
 
 import pprint
+import urllib.request
+import requests
+
+def parseFile(input):
+    if input.startswith('http'):
+#         uri=input
+#         r = requests.get(uri).text
+#         alllines= ''.join(r.split('\n'))
+#         print(alllines)
+#         buffer = r.read().decode('utf-8')
+#         return myparser(buffer)
+        print('This does not read http files')
+        exit()
+    else:
+        return myparser(input)
+    
+
+      # use requests
+#         uri=input
+#         r=urllib.request.urlopen(uri)
+# #         r = requests.get(uri).text
+#         return myparser(r)
+#         r = requests.get(uri).text
+#         print(r)
+# #         req = urllib.request.urlopen(uri)
+# #         buffer = req.read().decode('utf-8')
+
+#         \n'.join(r.split('\n')[:5]) 
+
+
 
 
 def myparser(file):# eventually you will be passing a filename to this method as an arg...
@@ -20,7 +50,7 @@ def myparser(file):# eventually you will be passing a filename to this method as
                     num1=x2[0]
                     num2=x2[1]
                     x3=values[4]
-                    x4=x3.split(',')
+                    x4=x3.strip().split(',')
                     num3=x4[0]
                     num4=x4[1]
                 elif phrase== 'turn off':
@@ -30,11 +60,10 @@ def myparser(file):# eventually you will be passing a filename to this method as
                     num1=x2[0]
                     num2=x2[1]
                     x3=values[4]
-                    x4=x3.split(',')
+                    x4=x3.strip().split(',')
                     num3=x4[0]
                     num4=x4[1]
                 else:
-                    print('this should not print')
                     cmd= ''
                     num1=0
                     num2=0
@@ -47,7 +76,7 @@ def myparser(file):# eventually you will be passing a filename to this method as
                 num1=x2[0]
                 num2=x2[1]
                 x3=values[3]
-                x4=x3.split(',')
+                x4=x3.strip().split(',')
                 num3=x4[0]
                 num4=x4[1]
             else:
@@ -58,7 +87,7 @@ def myparser(file):# eventually you will be passing a filename to this method as
                 num4=0
             thisline=[cmd, num1, num2,num3,num4]
             instructions.append(thisline)
-            
+             
     return N, instructions
 
 
@@ -78,6 +107,14 @@ class LightTester:
         self.y = int(b)
         self.z=int(c)
         self.q=int(d)
+        if self.x<0:
+            self.x=0
+        if self.y<0:
+            self.y=0
+        if self.z>self.size-1:
+            self.z=self.size-1
+        if self.q>self.size-1:
+            self.q=self.size-1
         for i in range (self.x, self.z+1):
             for j in range (self.y, self.q+1):
                 self.lights[i][j]=True
@@ -88,6 +125,14 @@ class LightTester:
         self.y = int(b)
         self.z=int(c)
         self.q=int(d)
+        if self.x<0:
+            self.x=0
+        if self.y<0:
+            self.y=0
+        if self.z>self.size-1:
+            self.z=self.size-1
+        if self.q>self.size-1:
+            self.q=self.size-1 
         for i in range (self.x, self.z+1):
             for j in range (self.y, self.q+1):
                 self.lights[i][j]=False
@@ -98,6 +143,14 @@ class LightTester:
         self.y = int(b)
         self.z=int(c)
         self.q=int(d)
+        if self.x<0:
+            self.x=0
+        if self.y<0:
+            self.y=0
+        if self.z>self.size-1:
+            self.z=self.size-1
+        if self.q>self.size-1:
+            self.q=self.size-1
         for i in range (self.x, self.z+1):
             for j in range (self.y, self.q+1):
                 if self.lights[i][j]==True:

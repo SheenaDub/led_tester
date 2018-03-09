@@ -92,7 +92,23 @@ def test_works_with_bigger_file():
     
     
 def test_works_with_out_of_range_numbers():
-    pass
+    ifile = "./data/toobig.txt"
+    info= myparser(ifile)
+    N=info[0]
+    instructions=info[1]
+    test3=LightTester(N)
+    test3.apply(instructions)
+    assert test3.count()==1
+    
+    
+def test_can_read_http_files():
+    ifile = "http://claritytrec.ucd.ie/~alawlor/comp30670/input_assign3.txt"
+    info= myparser(ifile)
+    N=info[0]
+    instructions=info[1]
+    test4=LightTester(N)
+    test4.apply(instructions)
+    assert test4.count()==400410
     
     
     
